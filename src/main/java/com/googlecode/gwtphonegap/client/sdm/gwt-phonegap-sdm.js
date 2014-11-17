@@ -68,7 +68,7 @@
     var script_tag = $doc.createElement('script');
     
     var script_url = 'http://' + codeserver_host + ':'  + codeserver_port + '/' + 
-        module_name + '/' + module_name + '.recompile.nocache.js';
+        'recompile-requester' + '/' + module_name;
     script_tag.src = script_url;
 
     var errorCallback = function() {
