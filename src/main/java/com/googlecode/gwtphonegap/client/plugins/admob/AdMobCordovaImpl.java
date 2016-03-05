@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Washington State Department of Transportation
+ * Copyright (c) 2016 Washington State Department of Transportation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ public class AdMobCordovaImpl implements AdMob {
     }
     
     private native boolean testForPlugin() /*-{
-        if (!$wnd.window.AdMob) {
+        if (!$wnd.AdMob) {
             return false;
         }
         return true;
@@ -45,7 +45,7 @@ public class AdMobCordovaImpl implements AdMob {
     }
     
     private native void createBannerNative(AdMobOptions options) /*-{
-        $wnd.window.AdMob.createBanner(options);
+        $wnd.AdMob.createBanner(options);
     }-*/;
 
     @Override
@@ -57,7 +57,7 @@ public class AdMobCordovaImpl implements AdMob {
     }
 
     private native void removeBannerNative() /*-{
-        $wnd.window.AdMob.removeBanner();
+        $wnd.AdMob.removeBanner();
     }-*/;
     
     @Override
@@ -69,7 +69,7 @@ public class AdMobCordovaImpl implements AdMob {
     }
     
     private native void hideBannerNative() /*-{
-        $wnd.window.AdMob.hideBanner();
+        $wnd.AdMob.hideBanner();
     }-*/;
     
     @Override
@@ -81,7 +81,7 @@ public class AdMobCordovaImpl implements AdMob {
     }
     
     private native void showBannerNative(int position) /*-{
-        $wnd.window.AdMob.showBanner(position);
+        $wnd.AdMob.showBanner(position);
     }-*/;
     
     @Override
@@ -93,7 +93,7 @@ public class AdMobCordovaImpl implements AdMob {
     }
 
     private native void showBannerAtXYNative(int x, int y) /*-{
-        $wnd.window.AdMob.showBannerAtXY(x, y);
+        $wnd.AdMob.showBannerAtXY(x, y);
     }-*/;
     
     @Override
@@ -105,7 +105,7 @@ public class AdMobCordovaImpl implements AdMob {
     }
     
     private native void prepareInterstitialNative(AdMobOptions options) /*-{
-        $wnd.window.AdMob.prepareInterstitial(options);
+        $wnd.AdMob.prepareInterstitial(options);
     }-*/;
 
     @Override
@@ -117,7 +117,7 @@ public class AdMobCordovaImpl implements AdMob {
     }
     
     private native void showInterstitialNative() /*-{
-        $wnd.window.AdMob.showInterstitial();
+        $wnd.AdMob.showInterstitial();
     }-*/;
 
 }
