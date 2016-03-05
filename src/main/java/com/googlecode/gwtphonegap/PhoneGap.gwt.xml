@@ -275,8 +275,17 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-	
-    
+
+    <!-- AdMob -->
+    <replace-with class="com.googlecode.gwtphonegap.client.plugins.admob.AdMobBrowserImpl">
+        <when-type-is class="com.googlecode.gwtphonegap.client.plugins.admob.AdMob" />
+    </replace-with>
+    <replace-with class="com.googlecode.gwtphonegap.client.plugins.admob.AdMobCordovaImpl">
+        <when-type-is class="com.googlecode.gwtphonegap.client.plugins.admob.AdMob" />
+        <all>
+            <when-property-is name="phonegap.env" value="yes" />
+        </all>
+    </replace-with>
     
     <!-- Log -->
      <inherits name="com.google.gwt.logging.Logging"/>
