@@ -17,9 +17,7 @@
 	   
 	    return 'no';
   	}
-]]></property-provider>
-
-	
+    ]]></property-provider>
 
     <set-property name="phonegap.env" value="no" >
       <none>
@@ -38,9 +36,6 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-
-	
-	
 	
 	 <!-- Phonegap Util-->
 	 <replace-with class="com.googlecode.gwtphonegap.client.util.PhonegapUtilImplBrowser">
@@ -58,10 +53,6 @@
 	<generate-with class="com.googlecode.gwtphonegap.rebind.PhoneGapServiceInterfaceProxyGenerator">
 		<when-type-assignable class="com.google.gwt.user.client.rpc.RemoteService"/>
 	</generate-with>
-
-	
-    
-	
     
     <!-- Accelerometer -->
     <replace-with class="com.googlecode.gwtphonegap.client.accelerometer.browser.AccelerometerBrowserImpl">
@@ -85,8 +76,6 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-	
-    
     
     <!-- Capture -->
     <replace-with class="com.googlecode.gwtphonegap.client.capture.browser.CaptureBrowserImpl">
@@ -99,7 +88,6 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-	
     
      <!-- Compass -->
      <replace-with class="com.googlecode.gwtphonegap.client.compass.browser.CompassBrowserImpl">
@@ -111,7 +99,6 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-	
     
     <!-- Contacts -->
     <replace-with class="com.googlecode.gwtphonegap.client.contacts.browser.ContactsBrowserImpl">
@@ -123,8 +110,6 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-	
-	
     
     <!-- Device -->
     <replace-with class="com.googlecode.gwtphonegap.client.device.DeviceBrowserImpl">
@@ -136,7 +121,6 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-	
     
     <!-- Event -->
     <replace-with class="com.googlecode.gwtphonegap.client.event.browser.EventBrowserImpl">
@@ -148,7 +132,6 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-	
     
     <!-- Geolocation -->
     <replace-with class="com.googlecode.gwtphonegap.client.geolocation.browser.GeolocationBrowserEmptyImpl">
@@ -160,7 +143,6 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-	
 
 	<replace-with class="com.googlecode.gwtphonegap.client.log.DebugLoggerMobileImpl">
 		<when-type-is class="com.googlecode.gwtphonegap.client.log.DebugLogger" />
@@ -177,7 +159,6 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-	
     
     <!-- Media -->
     <replace-with class="com.googlecode.gwtphonegap.client.media.browser.MediaModuleBrowserImpl">
@@ -189,7 +170,6 @@
 			<when-property-is name="phonegap.env" value="yes" />
 		</all>
 	</replace-with>
-	
     
     <!-- Notification -->
     <replace-with class="com.googlecode.gwtphonegap.client.notification.NotificationBrowserImpl">
@@ -211,7 +191,6 @@
             <when-property-is name="phonegap.env" value="yes" />
         </all>
     </replace-with>
-    
     
     <!-- File -->
 	<replace-with class="com.googlecode.gwtphonegap.client.file.browser.FileBrowserImpl">
@@ -236,8 +215,6 @@
         <when-property-is name="phonegap.env" value="yes" />
       </all>
     </replace-with>
-    
-   
 
     <!-- Globalization -->
     <replace-with class="com.googlecode.gwtphonegap.client.globalization.browser.GlobalizationBrowserImpl">
@@ -286,9 +263,20 @@
             <when-property-is name="phonegap.env" value="yes" />
         </all>
     </replace-with>
-    
+
+    <!-- Analytics -->
+    <replace-with class="com.googlecode.gwtphonegap.client.plugins.analytics.AnalyticsBrowserImpl">
+        <when-type-is class="com.googlecode.gwtphonegap.client.plugins.analytics.Analytics" />
+    </replace-with>
+    <replace-with class="com.googlecode.gwtphonegap.client.plugins.analytics.AnalyticsCordovaImpl">
+        <when-type-is class="com.googlecode.gwtphonegap.client.plugins.analytics.Analytics" />
+        <all>
+            <when-property-is name="phonegap.env" value="yes" />
+        </all>
+    </replace-with>
+
     <!-- Log -->
-     <inherits name="com.google.gwt.logging.Logging"/>
+    <inherits name="com.google.gwt.logging.Logging"/>
     
     <define-configuration-property name="phonegap.logging.threshold" is-multi-valued="false" />
     <set-configuration-property name="phonegap.logging.threshold" value="WARNING" /> 
@@ -296,12 +284,10 @@
     <define-configuration-property name="phonegap.logging.maxentries" is-multi-valued="false" />
     <set-configuration-property name="phonegap.logging.maxentries" value="100" /> 
     
-    
 	<generate-with
 		class="com.googlecode.gwtphonegap.server.log.rebind.PhoneGapLogValueGenerator">
 		<when-type-assignable class="com.googlecode.gwtphonegap.client.log.PhoneGapLogConfig" />
 	</generate-with>
-
 
 	<generate-with
 		class="com.googlecode.gwtphonegap.server.log.rebind.PhoneGapLogThresholdGenerator">
@@ -331,14 +317,7 @@
 		</any>
 	</replace-with>
 	
-	
 	<!-- disable default gwt Log handler -->
 	<set-property name="gwt.logging.consoleHandler" value="DISABLED"/> 
-	
-	
-	
-
-
-
 
 </module>
