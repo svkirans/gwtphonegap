@@ -1,0 +1,72 @@
+/*
+ * Copyright (c) 2016 Washington State Department of Transportation
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
+ */
+
+package com.googlecode.gwtphonegap.client.plugins.analytics;
+
+/**
+ * Empty implementation for browser
+ */
+public class AnalyticsBrowserImpl implements Analytics {
+
+    @Override
+    public void initialize() {
+    }
+
+    @Override
+    public void startTrackerWithId(String id) {
+    }
+
+    @Override
+    public void setUserId(String id) {
+    }
+
+    @Override
+    public void debugMode() {
+    }
+
+    @Override
+    public void trackView(String screen) {
+    }
+
+    @Override
+    public void addCustomDimension(int key, String value) {
+    }
+
+    @Override
+    public void trackEvent(String category, String action, String label, int value) {
+    }
+
+    @Override
+    public void trackException(String description, boolean fatal) {
+    }
+
+    @Override
+    public void trackTiming(String category, int intervalInMilliseconds, String name, String label) {
+    }
+
+    @Override
+    public void addTransaction(String transactionId, String affiliation, String revenue, String tax, String shipping,
+            String currencyCode) {
+    }
+
+    @Override
+    public void addTransactionItem(String transactionId, String name, String sku, String category, String price,
+            String quantity, String currencyCode) {
+    }
+
+}
