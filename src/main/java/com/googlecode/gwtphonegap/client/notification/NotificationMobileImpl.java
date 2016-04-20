@@ -47,8 +47,18 @@ public class NotificationMobileImpl implements Notification {
 
 	@Override
 	public native void vibrate(int milliseconds)/*-{
-		$wnd.navigator.notification.vibrate(milliseconds);
+		$wnd.navigator.vibrate(milliseconds);
 	}-*/;
+        
+        @Override
+        public  void vibrate(int[] pattern){
+             JsArrayInteger jsPattern =  JsArrayUtils.readOnlyJsArray(pattern);
+             vibrate0(jsPattern);
+        }
+        
+        public native void vibrate0(JsArrayInteger pattern)/*-{
+                $wnd.navigator.vibrate(pattern);
+        }-*/;
         
         @Override
         public void vibrateWithPattern(int[] pattern) {
@@ -67,7 +77,7 @@ public class NotificationMobileImpl implements Notification {
 
         @Override
         public native void cancelVibrate() /*-{
-		$wnd.navigator.notification.cancelVibration();
+		$wnd.navigator.vibrate(0);
 	}-*/;
         
         @Override
