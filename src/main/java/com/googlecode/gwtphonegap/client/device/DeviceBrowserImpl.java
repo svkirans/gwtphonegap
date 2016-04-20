@@ -85,4 +85,19 @@ public class DeviceBrowserImpl implements Device {
   public boolean isAvailable() {
     return true;
   }
+
+    @Override
+    public String getManufacturer() {
+      return "";
+    }
+
+    @Override
+    public boolean isVirtual() {
+        return false;
+    }
+
+    @Override
+    public String getSerial() {
+      return "";
+    }
 }
