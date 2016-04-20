@@ -40,7 +40,18 @@ public interface Notification {
 
 	public void beep(int count);
 
+        /**
+         * Vibrates the device for a given amount of time.
+         * @param milliseconds 
+         */
 	public void vibrate(int milliseconds);
+        
+        /**
+         * 
+         * Vibrates the device with the provided pattern.
+         * @param pattern :  Sequence of durations (in milliseconds) for which to turn on or off the vibrator.
+         */
+        public void vibrate(int[] pattern);
         
         /**
         * Vibrates the device with a given pattern. The pattern is not repeated.
@@ -48,6 +59,7 @@ public interface Notification {
         * @param pattern :Sequence of durations (in milliseconds) for which to turn
         * on or off the vibrator. (Array of Numbers)
         */
+        @Deprecated
         public void vibrateWithPattern(int[] pattern);
 
        /**
@@ -59,11 +71,13 @@ public interface Notification {
         * repeating (will repeat until canceled), or -1 for no repetition
         * (default). (Number)
         */
+        @Deprecated
         public void vibrateWithPattern(int[] pattern, int repeat);
 
        /**
         * Immediately cancels any currently running vibration.
         */
+        @Deprecated
         public void cancelVibrate();
 
         public void prompt(String message, PromptCallback callback);
