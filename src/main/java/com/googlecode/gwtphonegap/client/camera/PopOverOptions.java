@@ -22,19 +22,13 @@ package com.googlecode.gwtphonegap.client.camera;
  */
 public class PopOverOptions {
 
-  public static final int ARROW_DIR_UP = 1;
-  public static final int ARROW_DIR_DOWN = 2;
-  public static final int ARROW_DIR_LEFT = 4;
-  public static final int ARROW_DIR_RIGHT = 8;
-  public static final int ARROW_DIR_ANY = 15;
+  private int x = 0;
 
-  private int x;
+  private int y = 32;
 
-  private int y;
+  private int width = 320;
 
-  private int width;
-
-  private int height;
+  private int height = 480;
 
   private int arrowDir;
 

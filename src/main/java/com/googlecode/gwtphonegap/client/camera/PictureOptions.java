@@ -16,63 +16,6 @@ package com.googlecode.gwtphonegap.client.camera;
 public class PictureOptions {
 
     /**
-     * Return image as base64-encoded string
-     */
-    public static final int DESTINATION_TYPE_DATA_URL = 0;
-    /**
-     * Return image file URI
-     */
-    public static final int DESTINATION_TYPE_FILE_URI = 1;
-    /**
-     * Return image native URI (e.g., assets-library:// on iOS or content:// on Android)
-     */
-    public static final int DESTINATION_TYPE_NATIVE_URI = 2;
-    /**
-     * Use the front-facing camera
-     */
-    public static final int FRONT_CAMERA = 1;
-    /**
-     * Use the back-facing camera
-     */
-    public static final int BACK_CAMERA = 0;
-    /**
-     * Return JPEG encoded image
-     */
-    public static final int CAMERA_ENCODING_TYPE_JPEG = 0;
-    /**
-     * Return PNG encoded image
-     */
-    public static final int CAMERA_ENCODING_TYPE_PNG = 1;
-    /**
-     * allow selection of still pictures only. DEFAULT. Will return format specified via DestinationType
-     */
-    public static final int CAMERA_MEDIA_TYPE_PICTURE = 0;
-
-    /**
-     *allow selection of video only, WILL ALWAYS RETURN FILE_URI
-     */
-    public static final int CAMERA_MEDIA_TYPE_VIDEO = 1;
-
-    /**
-     * allow selection from all media types
-     */
-    public static final int CAMERA_MEDIA_TYPE_ALL = 2;
-
-    /**
-     * Choose image from picture library (same as SAVEDPHOTOALBUM for Android)
-     */
-    public static final int PICTURE_SOURCE_TYPE_PHOTO_LIBRARY = 0;
-
-    /**
-     * Take picture from camera
-     */
-    public static final int PICTURE_SOURCE_TYPE_CAMERA = 1;
-    /**
-     * Choose image from picture library (same as PHOTOLIBRARY for Android)
-     */
-    public static final int PICTURE_SOURCE_TYPE_SAVED_PHOTO_ALBUM = 2;
-
-    /**
      * Quality of the saved image, expressed as a range of 0-100,
      * where 100 is typically full resolution with no loss from file compression. (Number)
      * (Note that information about the camera's resolution is unavailable.)
@@ -104,7 +47,7 @@ public class PictureOptions {
     /**
      * Set the type of media to select from.
      * Only works when PictureSourceType is PHOTOLIBRARY or SAVEDPHOTOALBUM.
-     * Defined in nagivator.camera.MediaType (Number)
+     * Defined in navigator.camera.MediaType (Number)
      */
   private int mediaType;
     /**
@@ -130,19 +73,19 @@ public class PictureOptions {
   private PopOverOptions popOverOptions;
 
   public PictureOptions() {
-    quality = 75;
-    destinationType = DESTINATION_TYPE_DATA_URL;
-    sourceType = PICTURE_SOURCE_TYPE_CAMERA;
-    encoding = CAMERA_ENCODING_TYPE_JPEG;
+    quality = 50;
+    destinationType = CameraConstants.DestinationTypeEnum.FILE_URI.getValue();
+    sourceType = CameraConstants.PictureSourceTypeEnum.CAMERA.getValue();
+    encoding = CameraConstants.EncodingTypeEnum.JPEG.getValue();
 
     // no sizing by default...
     targetHeightInPx = -1;
     targetWidthInPx = -1;
 
-    mediaType = CAMERA_MEDIA_TYPE_PICTURE;
+    mediaType = CameraConstants.MediaTypeEnum.PICTURE.getValue();
 
     allowEdit = true;
-
+    direction = CameraConstants.DirectionEnum.BACK.getValue();
     correctOrientation = false;
     saveToPhotoAlbum = false;
   }

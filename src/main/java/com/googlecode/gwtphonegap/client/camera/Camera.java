@@ -29,6 +29,7 @@ public interface Camera {
    * 
    * @param options
    * @param callback
+   * @return 
    */
   public CameraPopoverHandle getPicture(PictureOptions options, PictureCallback callback);
 

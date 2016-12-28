@@ -46,11 +46,11 @@ public class CameraBrowserImpl implements CameraMock {
       return null;
     }
 
-    if (options.getDestinationType() == PictureOptions.DESTINATION_TYPE_DATA_URL) {
+    if (options.getDestinationType() == CameraConstants.DestinationTypeEnum.DATA_URL.getValue()) {
       callback.onSuccess(getBundle().getSuccessPicture().getSafeUri().asString().substring(
           "data:image/jpeg;base64,".length()));
     } else {
-      if (options.getDestinationType() == PictureOptions.DESTINATION_TYPE_FILE_URI) {
+      if (options.getDestinationType() == CameraConstants.DestinationTypeEnum.FILE_URI.getValue()) {
 
         callback.onSuccess(this.pictureUrl);
 
