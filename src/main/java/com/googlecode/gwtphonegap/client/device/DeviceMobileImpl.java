@@ -25,13 +25,6 @@ package com.googlecode.gwtphonegap.client.device;
  */
 public class DeviceMobileImpl implements Device {
 
-	/* (non-Javadoc)
-	 * @see com.googlecode.gwtphonegap.client.device.Device#getName()
-	 */
-	@Override
-	public native String getName()/*-{
-		return $wnd.device.name;
-  }-*/;
 
 	/* (non-Javadoc)
 	 * @see com.googlecode.gwtphonegap.client.device.Device#getPhoneGapVersion()
