@@ -15,16 +15,20 @@
  */
 package com.googlecode.gwtphonegap.client.contacts;
 
+import java.util.List;
+
 public class ContactFindOptions {
 	private String filter;
 	private boolean multiple;
+        private List<ContactFieldTypeEnum> desiredFields;
+        private boolean hasPhoneNumber = false;
 
 	public ContactFindOptions() {
 		this("");
 	}
 
 	public ContactFindOptions(String filter) {
-		this(filter, true);
+		this(filter, false);
 	}
 
 	public ContactFindOptions(String filter, boolean multiple) {
@@ -32,10 +36,18 @@ public class ContactFindOptions {
                 this.multiple = multiple;
 	}
 
+        /**
+         * The search string used to find navigator.contacts.
+         * @param filter 
+         */
 	public void setFilter(String filter) {
 		this.filter = filter;
 	}
 
+        /**
+         * Determines if the find operation returns multiple navigator.contacts.
+         * @param multiple 
+         */
 	public void setMultiple(boolean multiple) {
 		this.multiple = multiple;
 	}
@@ -47,5 +59,36 @@ public class ContactFindOptions {
 	public boolean isMultiple() {
 		return multiple;
 	}
+
+        /**
+         * @return the desiredFields
+         */
+        public List<ContactFieldTypeEnum> getDesiredFields() {
+            return desiredFields;
+        }
+
+        /**
+         * Contact fields to be returned back. If specified, the resulting Contact object only features values for these fields. 
+         * @param desiredFields the desiredFields to set
+         */
+        public void setDesiredFields(List<ContactFieldTypeEnum> desiredFields) {
+            this.desiredFields = desiredFields;
+        }
+
+        /**
+         * @return the hasPhoneNumber
+         */
+        public boolean hasPhoneNumber() {
+            return hasPhoneNumber;
+        }
+
+        /**
+         * Filters the search to only return contacts with a phone number informed. 
+         * Android only
+         * @param hasPhoneNumber the hasPhoneNumber to set
+         */
+        public void setHasPhoneNumber(boolean hasPhoneNumber) {
+            this.hasPhoneNumber = hasPhoneNumber;
+        }
 
 }
