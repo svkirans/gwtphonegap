@@ -96,18 +96,18 @@ public class ContactsJsoImpl implements Contacts {
        $wnd.navigator.contacts.pickContact($entry(sC),$entry(eC));
 	}-*/;
 
-    private JavaScriptObject convertContactFieldTypes(ContactFindOptions contactFindOptions) {
-        LightArray<String> fields = CollectionFactory.<String> constructArray();
-        List<ContactFieldTypeEnum> listContactFieldTypes = contactFindOptions.getDesiredFields();
-        if(listContactFieldTypes != null && !listContactFieldTypes.isEmpty()){
-            for (Iterator<ContactFieldTypeEnum> iterator = listContactFieldTypes.iterator(); iterator.hasNext();) {
-                ContactFieldTypeEnum next = iterator.next();
-                fields.push(next.getValue());
+        private JavaScriptObject convertContactFieldTypes(ContactFindOptions contactFindOptions) {
+            LightArray<String> fields = CollectionFactory.<String> constructArray();
+            List<ContactFieldTypeEnum> listContactFieldTypes = contactFindOptions.getDesiredFields();
+            if(listContactFieldTypes != null && !listContactFieldTypes.isEmpty()){
+                for (Iterator<ContactFieldTypeEnum> iterator = listContactFieldTypes.iterator(); iterator.hasNext();) {
+                    ContactFieldTypeEnum next = iterator.next();
+                    fields.push(next.getValue());
+                }
             }
+            JsLightArray<?> jsLightArray = (JsLightArray<?>) fields;
+                    JavaScriptObject jsFields = jsLightArray.getArray();
+            return jsFields;
         }
-        JsLightArray<?> jsLightArray = (JsLightArray<?>) fields;
-		JavaScriptObject jsFields = jsLightArray.getArray();
-        return jsFields;
-    }
 
 }
