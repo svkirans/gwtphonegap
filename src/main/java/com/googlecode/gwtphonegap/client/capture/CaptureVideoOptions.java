@@ -23,10 +23,13 @@ public class CaptureVideoOptions {
 	private int limit;
 
 	private long duration;
+        
+        private int quality;
 
 	public CaptureVideoOptions() {
 		this.limit = 1;
 		this.duration = -1;
+                this.quality = 1;
 	}
 
         /**
@@ -63,4 +66,21 @@ public class CaptureVideoOptions {
 		this.duration = duration;
 	}
 
+        /**
+         * @return the quality
+         */
+        public int getQuality() {
+            return quality;
+        }
+
+        /**
+         * Android supports an additional quality property, to allow capturing 
+         * video at different qualities. A value of 1 ( the default ) means high
+         * quality and value of 0 means low quality, suitable for MMS messages.
+         * Android only.
+         * @param quality the quality to set
+         */
+        public void setQuality(int quality) {
+            this.quality = quality;
+        }
 }

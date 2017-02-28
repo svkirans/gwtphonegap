@@ -38,6 +38,10 @@ public interface CaptureError {
          */
 	public static final int CAPTURE_NO_MEDIA_FILES = 3;
         /**
+         * The user denied a permission required to perform the given capture request.
+         */
+        public static final int CAPTURE_PERMISSION_DENIED = 4;
+        /**
          * The requested capture operation is not supported.
          */
 	public static final int CAPTURE_NOT_SUPPORTED = 20;
