@@ -23,6 +23,8 @@ public class CaptureVideoOptions {
 	private int limit;
 
 	private long duration;
+        
+        private int quality;
 
 	public CaptureVideoOptions() {
 		this.limit = 1;
@@ -41,6 +43,8 @@ public class CaptureVideoOptions {
          * The maximum number of video clips the device's user can capture in a 
          * single capture operation. The value must be greater than or equal to 
          * 1 (defaults to 1).
+         * On iOS, The limit property is ignored. Only one video is recorded per
+         * invocation.
          * @param limit 
          */
 	public void setLimit(int limit) {
@@ -62,5 +66,23 @@ public class CaptureVideoOptions {
 	public void setDuration(long duration) {
 		this.duration = duration;
 	}
+
+        /**
+         * @return the quality
+         */
+        public int getQuality() {
+            return quality;
+        }
+
+        /**
+         * Android supports an additional quality property, to allow capturing 
+         * video at different qualities. A value of 1 ( the default ) means high
+         * quality and value of 0 means low quality, suitable for MMS messages.
+         * Android only.
+         * @param quality the quality to set
+         */
+        public void setQuality(int quality) {
+            this.quality = quality;
+        }
 
 }
