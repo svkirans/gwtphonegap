@@ -18,12 +18,15 @@ package com.googlecode.gwtphonegap.client.contacts.js;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.googlecode.gwtphonegap.client.contacts.Contact;
 import com.googlecode.gwtphonegap.client.contacts.ContactFactory;
+import com.googlecode.gwtphonegap.client.contacts.ContactFieldTypeEnum;
 import com.googlecode.gwtphonegap.client.contacts.ContactFindCallback;
 import com.googlecode.gwtphonegap.client.contacts.ContactFindOptions;
 import com.googlecode.gwtphonegap.client.contacts.ContactPickCallback;
 import com.googlecode.gwtphonegap.client.contacts.Contacts;
 import com.googlecode.gwtphonegap.collection.client.JsLightArray;
+import com.googlecode.gwtphonegap.collection.shared.CollectionFactory;
 import com.googlecode.gwtphonegap.collection.shared.LightArray;
+import java.util.List;
 
 public class ContactsJsoImpl implements Contacts {
 
@@ -33,13 +36,17 @@ public class ContactsJsoImpl implements Contacts {
 	}-*/;
 
 	@Override
-	public void find(LightArray<String> fields, ContactFindCallback callback, ContactFindOptions contactFindOptions) {
+	public void find(List<ContactFieldTypeEnum> fields, ContactFindCallback callback, ContactFindOptions contactFindOptions) {
 		if (!(fields instanceof JsLightArray<?>)) {
 			throw new IllegalArgumentException();
 		}
-		JsLightArray<?> jsLightArray = (JsLightArray<?>) fields;
-		JavaScriptObject jsFields = jsLightArray.getArray();
-		findNative(jsFields, callback, contactFindOptions);
+//		JsLightArray<?> jsLightArray = (JsLightArray<?>) fields;
+//		JavaScriptObject jsFields = jsLightArray.getArray();
+                List<ContactFieldTypeEnum> listContactFieldTypes = contactFindOptions.getDesiredFields();
+                JavaScriptObject jsFields = convertContactFieldTypes(fields);
+                JavaScriptObject desiredFields = convertContactFieldTypes(listContactFieldTypes);
+                
+		findNative(jsFields, callback, contactFindOptions,desiredFields);
 	}
 
 	private void callSuccess(ContactFindCallback callback, JavaScriptObject contacts) {
@@ -47,7 +54,7 @@ public class ContactsJsoImpl implements Contacts {
 		callback.onSuccess(jsLightArray);
 	}
 
-	public native void findNative(JavaScriptObject fields, ContactFindCallback callback, ContactFindOptions contactFindOptions) /*-{
+	public native void findNative(JavaScriptObject fields, ContactFindCallback callback, ContactFindOptions contactFindOptions,JavaScriptObject desiredFields) /*-{
 		var instance = this;
 
 		var sC = function(contacts) {
@@ -60,10 +67,13 @@ public class ContactsJsoImpl implements Contacts {
 
 		var lfilter = contactFindOptions.@com.googlecode.gwtphonegap.client.contacts.ContactFindOptions::getFilter()();
 		var lmultiple = contactFindOptions.@com.googlecode.gwtphonegap.client.contacts.ContactFindOptions::isMultiple()();
+                var lhasPhoneNumber = contactFindOptions.@com.googlecode.gwtphonegap.client.contacts.ContactFindOptions::hasPhoneNumber()();
 
 		var options = {
 			filter : lfilter,
-			multiple : lmultiple
+			multiple : lmultiple,
+                        hasPhoneNumber : lhasPhoneNumber,
+                        desiredFields : desiredFields;    
 		};
 
 		$wnd.navigator.contacts.find(fields, $entry(sC), $entry(eC), options);
@@ -87,5 +97,17 @@ public class ContactsJsoImpl implements Contacts {
        
        $wnd.navigator.contacts.pickContact($entry(sC),$entry(eC));
 	}-*/;
+
+        private JavaScriptObject convertContactFieldTypes(List<ContactFieldTypeEnum> listContactFieldTypes) {
+            LightArray<String> fields = CollectionFactory.<String> constructArray();
+            if(listContactFieldTypes != null && !listContactFieldTypes.isEmpty()){
+                for (ContactFieldTypeEnum next : listContactFieldTypes) {
+                    fields.push(next.getValue());
+                }
+            }
+            JsLightArray<?> jsLightArray = (JsLightArray<?>) fields;
+                    JavaScriptObject jsFields = jsLightArray.getArray();
+            return jsFields;
+        }
 
 }

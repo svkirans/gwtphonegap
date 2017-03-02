@@ -23,6 +23,7 @@ import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.storage.client.Storage;
 import com.googlecode.gwtphonegap.client.contacts.Contact;
 import com.googlecode.gwtphonegap.client.contacts.ContactFactory;
+import com.googlecode.gwtphonegap.client.contacts.ContactFieldTypeEnum;
 import com.googlecode.gwtphonegap.client.contacts.ContactFindCallback;
 import com.googlecode.gwtphonegap.client.contacts.ContactFindOptions;
 import com.googlecode.gwtphonegap.client.contacts.ContactPickCallback;
@@ -31,6 +32,7 @@ import com.googlecode.gwtphonegap.client.device.DeviceBrowserImpl;
 import com.googlecode.gwtphonegap.collection.shared.CollectionFactory;
 import com.googlecode.gwtphonegap.collection.shared.LightArray;
 import com.googlecode.gwtphonegap.collection.shared.LightMap;
+import java.util.List;
 
 public class ContactsBrowserImpl implements Contacts {
 
@@ -50,10 +52,10 @@ public class ContactsBrowserImpl implements Contacts {
 	}
 
 	@Override
-	public void find(LightArray<String> fields, ContactFindCallback callback, ContactFindOptions contactFindOptions) {
+	public void find(List<ContactFieldTypeEnum> fields, ContactFindCallback callback, ContactFindOptions contactFindOptions) {
 		LightMap<Contact> fromStorage = loadContactsFromStorage();
 
-		if (fields.length() == 0) {
+		if (fields.isEmpty()) {
 			callback.onSuccess(toArray(fromStorage));
 		}
 
@@ -66,10 +68,10 @@ public class ContactsBrowserImpl implements Contacts {
 		for (int i = 0; i < keys.length(); i++) {
 			Contact contact = fromStorage.get(keys.get(i));
 
-			for (int j = 0; j < fields.length(); j++) {
-				String string = fields.get(j);
+			for (int j = 0; j < fields.size(); j++) {
+				String string = fields.get(j).getValue();
 
-				if ("name".equals(string)) {
+				if (ContactFieldTypeEnum.NAME.getValue().equals(string)) {
 					if (contact.getName().getFamilyName() != null && contact.getName().getFamilyName().contains(filter)) {
 						result.put(contact.getId(), contact);
 						break;

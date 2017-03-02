@@ -16,6 +16,7 @@
 package com.googlecode.gwtphonegap.client.contacts;
 
 import com.googlecode.gwtphonegap.collection.shared.LightArray;
+import java.util.List;
 
 public interface Contacts {
 	public Contact create();
@@ -56,7 +57,7 @@ public interface Contacts {
 	 * @param callback
 	 * @param contactFindOptions
 	 */
-	public void find(LightArray<String> fields, ContactFindCallback callback, ContactFindOptions contactFindOptions);
+	public void find(List<ContactFieldTypeEnum> fields, ContactFindCallback callback, ContactFindOptions contactFindOptions);
 
 	public ContactFactory getFactory();
         
